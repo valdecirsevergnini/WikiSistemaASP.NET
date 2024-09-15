@@ -1,4 +1,5 @@
 WikiSistemaASP.NET
+
 Este é um projeto de uma Wiki para documentar um sistema desenvolvido em C# e ASP.NET Core, utilizando PostgreSQL como banco de dados. A Wiki permite que usuários autenticados adicionem e atualizem conteúdo, enquanto visitantes podem visualizar as informações.
 
 Funcionalidades
