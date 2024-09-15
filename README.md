@@ -1,6 +1,4 @@
 # WikiSistemaASP.NET
-Wiki para sistemas
-# WikiSistemaASP.NET
 
 Este é um projeto de uma Wiki para documentar um sistema desenvolvido em **C#** e **ASP.NET Core**. A Wiki permite que usuários autenticados adicionem e atualizem conteúdo, incluindo textos, imagens e vídeos. Usuários não autenticados podem visualizar o conteúdo. A Wiki possui suporte para busca por palavras-chave e navegação por módulos e tópicos.
 
