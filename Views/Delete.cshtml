@@ -1,0 +1,26 @@
+@model WikiSistemaASP.NET.Models.Topico
+
+@{
+    ViewData["Title"] = "Excluir Tópico";
+}
+
+<h1>Excluir Tópico</h1>
+
+<h4>Tem certeza de que deseja excluir este tópico?</h4>
+<hr />
+<div>
+    <h4>@Model.Titulo</h4>
+    <div>
+        <label>Conteúdo:</label>
+        <p>@Model.Conteudo</p>
+    </div>
+    <div>
+        <label>Módulo:</label>
+        <p>@Model.ModuloId</p>
+    </div>
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="Id" />
+        <input type="submit" value="Excluir" class="btn btn-danger" />
+        <a asp-action="Index" class="btn btn-secondary">Cancelar</a>
+    </form>
+</div>
