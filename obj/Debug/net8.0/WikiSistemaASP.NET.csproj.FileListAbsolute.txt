@@ -15,3 +15,4 @@ C:\Users\Dell\Documents\GitHub\WikiSistemaASP.NET\obj\Debug\net8.0\WikiSistemaAS
 C:\Users\Dell\Documents\GitHub\WikiSistemaASP.NET\obj\Debug\net8.0\WikiSistemaASP.NET.MvcApplicationPartsAssemblyInfo.cache
 C:\Users\Dell\Documents\GitHub\WikiSistemaASP.NET\obj\Debug\net8.0\WikiSistemaASP.NET.RazorAssemblyInfo.cache
 C:\Users\Dell\Documents\GitHub\WikiSistemaASP.NET\obj\Debug\net8.0\WikiSistemaASP.NET.RazorAssemblyInfo.cs
+C:\Users\Dell\Documents\GitHub\WikiSistemaASP.NET\obj\Debug\net8.0\WikiSistemaASP.NET.sourcelink.json
