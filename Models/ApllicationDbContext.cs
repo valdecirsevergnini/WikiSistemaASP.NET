@@ -11,7 +11,7 @@ namespace WikiSistemaASP.NET.Models
 
         // Adicione suas entidades aqui
         public DbSet<YourEntity> YourEntities { get; set; }
-<<<<<<< HEAD
+
         public DbSet<Topico> Topicos { get; set; }
         public DbSet<Modulo> Modulos { get; set; }
         public DbSet<Usuario> Usuarios { get; set; }
