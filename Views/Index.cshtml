@@ -1,0 +1,38 @@
+@model IEnumerable<WikiSistemaASP.NET.Models.Topico>
+
+@{
+    ViewData["Title"] = "Tópicos";
+}
+
+<h1>Tópicos</h1>
+
+<p>
+    <a asp-action="Create" class="btn btn-primary">Criar Novo Tópico</a>
+</p>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>@Html.DisplayNameFor(model => model.Titulo)</th>
+            <th>@Html.DisplayNameFor(model => model.Conteudo)</th>
+            <th>@Html.DisplayNameFor(model => model.ModuloId)</th>
+            <th>Ações</th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model)
+{
+        <tr>
+            <td>@Html.DisplayFor(modelItem => item.Titulo)</td>
+            <td>@Html.DisplayFor(modelItem => item.Conteudo)</td>
+            <td>@Html.DisplayFor(modelItem => item.ModuloId)</td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-warning">Editar</a> |
+                <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-info">Detalhes</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger">Excluir</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+

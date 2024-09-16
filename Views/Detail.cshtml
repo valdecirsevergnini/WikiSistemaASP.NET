@@ -1,0 +1,24 @@
+@model WikiSistemaASP.NET.Models.Topico
+
+@{
+    ViewData["Title"] = "Detalhes do Tópico";
+}
+
+<h1>Detalhes do Tópico</h1>
+
+<div>
+    <h4>@Model.Titulo</h4>
+    <hr />
+    <div>
+        <label>Conteúdo:</label>
+        <p>@Model.Conteudo</p>
+    </div>
+    <div>
+        <label>Módulo:</label>
+        <p>@Model.ModuloId</p>
+    </div>
+    <div>
+        <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-warning">Editar</a> |
+        <a asp-action="Index" class="btn btn-secondary">Voltar</a>
+    </div>
+</div>
