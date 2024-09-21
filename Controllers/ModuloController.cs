@@ -1,6 +1,8 @@
 using Microsoft.AspNetCore.Mvc;
 using WikiSistemaASP.NET.Models;
 using WikiSistemaASP.NET.Data;
+using Microsoft.EntityFrameworkCore;
+
 
 namespace WikiSistemaASP.NET.Controllers
 {
@@ -104,8 +106,11 @@ namespace WikiSistemaASP.NET.Controllers
         public IActionResult DeleteConfirmed(int id)
         {
             var modulo = _context.Modulos.Find(id);
+            if (modulo != null) // Verifique se o tópico não é nulo
+           {
             _context.Modulos.Remove(modulo);
             _context.SaveChanges();
+           }
             return RedirectToAction(nameof(Index));
         }
     }

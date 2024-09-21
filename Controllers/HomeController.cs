@@ -1,6 +1,8 @@
 using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 using WikiSistemaASP.NET.Models;
+using Microsoft.EntityFrameworkCore;
+
 
 namespace WikiSistemaASP.NET.Controllers
 {

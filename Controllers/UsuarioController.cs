@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using WikiSistemaASP.NET.Models;
 using WikiSistemaASP.NET.Data;
+using Microsoft.EntityFrameworkCore;
 
 namespace WikiSistemaASP.NET.Controllers
 {
@@ -94,7 +95,7 @@ namespace WikiSistemaASP.NET.Controllers
             var usuario = _context.Usuarios.Find(id);
             if (usuario == null)
             {
-                return NotFound();
+                return NotFound(); // Corrigido para retornar NotFound se o usuário não existir
             }
             return View(usuario);
         }
@@ -104,8 +105,11 @@ namespace WikiSistemaASP.NET.Controllers
         public IActionResult DeleteConfirmed(int id)
         {
             var usuario = _context.Usuarios.Find(id);
-            _context.Usuarios.Remove(usuario);
-            _context.SaveChanges();
+            if (usuario != null) // Verifica se o usuário foi encontrado
+            {
+                _context.Usuarios.Remove(usuario);
+                _context.SaveChanges();
+            }
             return RedirectToAction(nameof(Index));
         }
     }

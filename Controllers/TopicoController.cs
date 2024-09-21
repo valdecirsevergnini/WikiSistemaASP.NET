@@ -2,6 +2,8 @@ using Microsoft.AspNetCore.Mvc;
 using WikiSistemaASP.NET.Models;
 using WikiSistemaASP.NET.Data;
 using System.Linq;
+using Microsoft.EntityFrameworkCore;
+
 
 namespace WikiSistemaASP.NET.Controllers
 {
@@ -113,8 +115,11 @@ namespace WikiSistemaASP.NET.Controllers
         public IActionResult DeleteConfirmed(int id)
         {
             var topico = _context.Topicos.Find(id);
+            if (topico != null) // Verifique se o tópico não é nulo
+            {
             _context.Topicos.Remove(topico);
             _context.SaveChanges();
+            }
             return RedirectToAction(nameof(Index));
         }
     }
