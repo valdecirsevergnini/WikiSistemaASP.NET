@@ -1,4 +1,6 @@
-﻿<!DOCTYPE html>
+﻿@model IEnumerable<WikiSistemaASP.NET.Models.Modulo>
+
+<!DOCTYPE html>
 <html lang="pt-br">
 <head>
     <meta charset="utf-8" />
@@ -10,24 +12,17 @@
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+        <nav class="navbar navbar-expand-sm navbar-light bg-white border-bottom box-shadow mb-3">
             <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">WikiSistema</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
+                <a class="navbar-brand" asp-controller="Home" asp-action="Index">WikiSistema</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacidade</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Admin" asp-action="Login">Administração</a>
-                        </li>
+                        <li class="nav-item"><a class="nav-link text-dark" asp-controller="Home" asp-action="Index">Home</a></li>
+                        <li class="nav-item"><a class="nav-link text-dark" asp-controller="Home" asp-action="Privacy">Busca</a></li>
+                        <li class="nav-item"><a class="nav-link text-dark" asp-controller="Admin" asp-action="Login">Administração</a></li>
                     </ul>
                 </div>
             </div>
@@ -40,14 +35,20 @@
 
             <h2>Módulos e Tópicos</h2>
             <div id="modules-container">
-                @* Aqui você pode iterar sobre os módulos e tópicos do banco de dados *@
-                @foreach (var module in Model.Modules)
+                @if (Model != null && Model.Any())
                 {
-                    <div class="module">
-                        <h3>@module.Title</h3>
-                        <p>@module.Description</p>
-                        <a class="btn btn-primary" href="@Url.Action("Details", "Module", new { id = module.Id })">Ver Tópicos</a>
-                    </div>
+                    foreach (var modulo in Model)
+                    {
+                        <div class="modulo">
+                            <h3>@modulo.Topicos</h3>
+                            <p>@modulo.Description</p>
+                            <a class="btn btn-primary" href="@Url.Action("Details", "Module", new { id = modulo.Id })">Ver Tópicos</a>
+                        </div>
+                    }
+                }
+                else
+                {
+                    <p>Nenhum módulo disponível.</p>
                 }
             </div>
         </main>
@@ -55,7 +56,7 @@
 
     <footer class="border-top footer text-muted">
         <div class="container">
-            &copy; 2024 - WikiSistema - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacidade</a>
+            &copy; 2024 - WikiSistema - <a asp-controller="Home" asp-action="Privacy">Termo e Privacidade</a>
         </div>
     </footer>
     
