@@ -1,23 +1,24 @@
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace WikiSistemaASP.NET.Models
 {
-    public class Topic
+    public class Topico
     {
         public int Id { get; set; }
 
-        [Required]
-        [StringLength(200)]
+        [Required(ErrorMessage = "O título é obrigatório.")]
+        [StringLength(200, ErrorMessage = "O título não pode exceder 200 caracteres.")]
         public string Title { get; set; }
 
-        public string Content { get; set; }  // Pode ser texto em Markdown ou HTML
+        public string Content { get; set; } // Pode ser texto em Markdown ou HTML
 
-        public string ImageUrl { get; set; }  // URL para imagens associadas ao tópico
+        public string ImageUrl { get; set; } // URL para imagens associadas ao tópico
 
-        public string VideoUrl { get; set; }  // URL para vídeos associados ao tópico
+        public string VideoUrl { get; set; } // URL para vídeos associados ao tópico
 
-        public int ModuleId { get; set; }
-        public Module Module { get; set; }
+        [Required(ErrorMessage = "O ID do módulo é obrigatório.")]
+        public int ModuloId { get; set; }
+        public Modulo Modulo { get; set; } // Relacionamento com a classe Modulo
     }
 }
+

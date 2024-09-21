@@ -10,8 +10,8 @@ namespace WikiSistemaASP.NET.Data
         {
         }
 
-        public DbSet<User> Users { get; set; }
-        public DbSet<Module> Modules { get; set; }
-        public DbSet<Topic> Topics { get; set; }
+        public DbSet<Usuario> Usuario { get; set; }
+        public DbSet<Modulo> Modulo { get; set; }
+        public DbSet<Topico> Topico { get; set; }
     }
 }
