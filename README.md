@@ -58,7 +58,7 @@ Antes de começar, certifique-se de ter as seguintes ferramentas instaladas em s
 No terminal ou Git Bash, clone o repositório:
 
 ```bash
-git clone https://github.com/seu-usuario/WikiSistemaASP.NET.git
+git clone https://github.com/valdecirsevergnini/WikiSistemaASP.NET.git
 cd WikiSistemaASP.NET/WikiSistema
 >>>>>>> 9b25a6d5bc7cfdf77b7090f50df4ca05c5f912ad
 <<<<<<< HEAD
@@ -79,7 +79,7 @@ Instalação do Ambiente
 Para clonar o repositório em sua máquina local, use o comando abaixo:
 
 bash
-Copiar código
+
 git clone https://github.com/valdecirsevergnini/WikiSistemaASP.NET.git
 cd WikiSistemaASP.NET
 2. Instalar Dependências
@@ -128,7 +128,7 @@ dotnet tool install --global dotnet-ef
 Para rodar o projeto, utilize o comando:
 
 bash
-Copiar código
+
 dotnet run
 O projeto estará acessível via https://localhost:5050 ou http://localhost:5050.
 
