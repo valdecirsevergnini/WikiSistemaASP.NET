@@ -130,7 +130,7 @@ Para rodar o projeto, utilize o comando:
 bash
 Copiar código
 dotnet run
-O projeto estará acessível via https://localhost:5001 ou http://localhost:5000.
+O projeto estará acessível via https://localhost:5050 ou http://localhost:5050.
 
 Estrutura do Projeto
 Controllers: Contém os controladores responsáveis pelas ações do sistema.
