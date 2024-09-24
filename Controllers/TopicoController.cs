@@ -3,7 +3,7 @@ using WikiSistemaASP.NET.Models;
 using WikiSistemaASP.NET.Data;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
-
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace WikiSistemaASP.NET.Controllers
 {
@@ -16,27 +16,36 @@ namespace WikiSistemaASP.NET.Controllers
             _context = context;
         }
 
+        private void PopulateModulos()
+        {
+            ViewBag.ModuloId = new SelectList(_context.Modulos, "Id", "Nome");
+            ViewBag.Modulos = _context.Modulos.ToList();
+        }
+
         // GET: /Topico/
         public IActionResult Index()
         {
-            var topicos = _context.Topicos.ToList();
+            PopulateModulos(); // Chama o método para preencher os módulos
+            var topicos = _context.Topicos.Include(t => t.Modulo).ToList();
             return View(topicos);
         }
 
         // GET: /Topico/Details/5
         public IActionResult Details(int id)
         {
-            var topico = _context.Topicos.Find(id);
+            var topico = _context.Topicos.Include(t => t.Modulo).FirstOrDefault(t => t.Id == id);
             if (topico == null)
             {
                 return NotFound();
             }
+            ViewBag.Modulos = _context.Modulos.ToList();
             return View(topico);
         }
 
         // GET: /Topico/Create
         public IActionResult Create()
         {
+            PopulateModulos(); // Preenche os módulos
             return View();
         }
 
@@ -51,17 +60,19 @@ namespace WikiSistemaASP.NET.Controllers
                 _context.SaveChanges();
                 return RedirectToAction(nameof(Index));
             }
+            PopulateModulos(); // Preenche os módulos em caso de erro
             return View(topico);
         }
 
         // GET: /Topico/Edit/5
         public IActionResult Edit(int id)
         {
-            var topico = _context.Topicos.Find(id);
+            var topico = _context.Topicos.Include(t => t.Modulo).FirstOrDefault(t => t.Id == id);
             if (topico == null)
             {
                 return NotFound();
             }
+            PopulateModulos(); // Preenche os módulos
             return View(topico);
         }
 
@@ -88,13 +99,11 @@ namespace WikiSistemaASP.NET.Controllers
                     {
                         return NotFound();
                     }
-                    else
-                    {
-                        throw;
-                    }
+                    throw;
                 }
                 return RedirectToAction(nameof(Index));
             }
+            PopulateModulos(); // Preenche os módulos em caso de erro
             return View(topico);
         }
 
@@ -106,6 +115,7 @@ namespace WikiSistemaASP.NET.Controllers
             {
                 return NotFound();
             }
+            ViewBag.Modulos = _context.Modulos.ToList();
             return View(topico);
         }
 
@@ -115,10 +125,10 @@ namespace WikiSistemaASP.NET.Controllers
         public IActionResult DeleteConfirmed(int id)
         {
             var topico = _context.Topicos.Find(id);
-            if (topico != null) // Verifique se o tópico não é nulo
+            if (topico != null)
             {
-            _context.Topicos.Remove(topico);
-            _context.SaveChanges();
+                _context.Topicos.Remove(topico);
+                _context.SaveChanges();
             }
             return RedirectToAction(nameof(Index));
         }

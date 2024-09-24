@@ -1,13 +1,8 @@
-using Microsoft.EntityFrameworkCore;
-using WikiSistemaASP.NET.Models;
-
 var builder = WebApplication.CreateBuilder(args);
 
-// Adicione o serviço do ApplicationDbContext com PostgreSQL
-builder.Services.AddDbContext<ApplicationDbContext>(options =>
-    options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
-
+// Adiciona os serviços ao contêiner.
 builder.Services.AddControllersWithViews();
+builder.Services.AddSession(); // Habilita o uso de sessões
 
 var app = builder.Build();
 
@@ -15,7 +10,6 @@ var app = builder.Build();
 if (!app.Environment.IsDevelopment())
 {
     app.UseExceptionHandler("/Home/Error");
-    // O valor padrão do HSTS é 30 dias. Você pode querer alterá-lo para cenários de produção.
     app.UseHsts();
 }
 
@@ -24,6 +18,7 @@ app.UseStaticFiles();
 
 app.UseRouting();
 
+app.UseSession(); // Habilita o uso de sessões
 app.UseAuthorization();
 
 app.MapControllerRoute(
@@ -31,4 +26,5 @@ app.MapControllerRoute(
     pattern: "{controller=Home}/{action=Index}/{id?}");
 
 app.Run();
+
 

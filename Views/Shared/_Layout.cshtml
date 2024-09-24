@@ -30,28 +30,32 @@
     </header>
     
     <div class="container">
-        <main role="main" class="pb-3">
-            @RenderBody()
-
-            <h2>Módulos e Tópicos</h2>
-            <div id="modules-container">
-                @if (Model != null && Model.Any())
-                {
-                    foreach (var modulo in Model)
+        <div class="row">
+            <div class="col-md-4">
+                <h2>Módulos</h2>
+                <div id="modules-container" class="list-group">
+                    @if (Model != null && Model.Any())
                     {
-                        <div class="modulo">
-                            <h3>@modulo.Topicos</h3>
-                            <p>@modulo.Description</p>
-                            <a class="btn btn-primary" href="@Url.Action("Details", "Module", new { id = modulo.Id })">Ver Tópicos</a>
-                        </div>
+                        foreach (var modulo in Model)
+                        {
+                            <a href="#" class="list-group-item list-group-item-action" onclick="showTopics(@modulo.Id)">
+                                @modulo.Nome
+                            </a>
+                        }
                     }
-                }
-                else
-                {
-                    <p>Nenhum módulo disponível.</p>
-                }
+                    else
+                    {
+                        <p>Nenhum módulo disponível.</p>
+                    }
+                </div>
             </div>
-        </main>
+            <div class="col-md-8">
+                <h2>Tópicos</h2>
+                <div id="topics-container">
+                    <p>Selecione um módulo para ver os tópicos.</p>
+                </div>
+            </div>
+        </div>
     </div>
 
     <footer class="border-top footer text-muted">
@@ -63,6 +67,14 @@
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
-    @await RenderSectionAsync("Scripts", required: false)
+    <script>
+        function showTopics(moduloId) {
+            $.get(`/Modulo/GetTopics/${moduloId}`, function(data) {
+                $('#topics-container').html(data);
+            });
+        }
+    </script>
+
+    @RenderBody() <!-- Esta linha deve ser incluída aqui -->
 </body>
 </html>

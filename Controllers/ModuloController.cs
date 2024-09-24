@@ -3,7 +3,6 @@ using WikiSistemaASP.NET.Models;
 using WikiSistemaASP.NET.Data;
 using Microsoft.EntityFrameworkCore;
 
-
 namespace WikiSistemaASP.NET.Controllers
 {
     public class ModuloController : Controller
@@ -15,15 +14,17 @@ namespace WikiSistemaASP.NET.Controllers
             _context = context;
         }
 
+        // Lista todos os módulos
         public IActionResult Index()
         {
-            var modulos = _context.Modulos.ToList();
+            var modulos = _context.Modulos.Include(m => m.Topicos).ToList();
             return View(modulos);
         }
 
+        // Detalhes de um módulo específico
         public IActionResult Details(int id)
         {
-            var modulo = _context.Modulos.Find(id);
+            var modulo = _context.Modulos.Include(m => m.Topicos).FirstOrDefault(m => m.Id == id);
             if (modulo == null)
             {
                 return NotFound();
@@ -31,6 +32,7 @@ namespace WikiSistemaASP.NET.Controllers
             return View(modulo);
         }
 
+        // Criação de um novo módulo
         public IActionResult Create()
         {
             return View();
@@ -49,6 +51,7 @@ namespace WikiSistemaASP.NET.Controllers
             return View(modulo);
         }
 
+        // Edição de um módulo existente
         public IActionResult Edit(int id)
         {
             var modulo = _context.Modulos.Find(id);
@@ -91,6 +94,7 @@ namespace WikiSistemaASP.NET.Controllers
             return View(modulo);
         }
 
+        // Excluir um módulo
         public IActionResult Delete(int id)
         {
             var modulo = _context.Modulos.Find(id);
@@ -106,12 +110,23 @@ namespace WikiSistemaASP.NET.Controllers
         public IActionResult DeleteConfirmed(int id)
         {
             var modulo = _context.Modulos.Find(id);
-            if (modulo != null) // Verifique se o tópico não é nulo
-           {
-            _context.Modulos.Remove(modulo);
-            _context.SaveChanges();
-           }
+            if (modulo != null)
+            {
+                _context.Modulos.Remove(modulo);
+                _context.SaveChanges();
+            }
             return RedirectToAction(nameof(Index));
+        }
+        
+        // Ação para gerenciar tópicos de um módulo específico
+        public IActionResult ManageTopics(int id)
+        {
+            var modulo = _context.Modulos.Include(m => m.Topicos).FirstOrDefault(m => m.Id == id);
+            if (modulo == null)
+            {
+                return NotFound();
+            }
+            return View(modulo);
         }
     }
 }
