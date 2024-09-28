@@ -9,6 +9,21 @@
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/WikiSistemaASP.NET.styles.css" asp-append-version="true" />
+    <style>
+        /* Centralizar o header */
+        header {
+            text-align: center;
+        }
+        
+        /* Posicionar o botão Administração à direita */
+        .navbar-nav {
+            justify-content: space-between;
+        }
+        
+        .admin-button {
+            margin-right: 20px;
+        }
+    </style>
 </head>
 <body>
     <header>
@@ -22,7 +37,9 @@
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item"><a class="nav-link text-dark" asp-controller="Home" asp-action="Index">Home</a></li>
                         <li class="nav-item"><a class="nav-link text-dark" asp-controller="Home" asp-action="Privacy">Busca</a></li>
-                        <li class="nav-item"><a class="nav-link text-dark" asp-controller="Admin" asp-action="Login">Administração</a></li>
+                    </ul>
+                    <ul class="navbar-nav">
+                        <li class="nav-item admin-button"><a class="nav-link text-dark" asp-controller="Admin" asp-action="Login">Administração</a></li>
                     </ul>
                 </div>
             </div>
@@ -48,6 +65,10 @@
                         <p>Nenhum módulo disponível.</p>
                     }
                 </div>
+                <form asp-controller="Home" asp-action="Search">
+                    <input type="text" name="searchTerm" placeholder="Buscar...">
+                    <button type="submit">Buscar</button>
+                </form>
             </div>
             <div class="col-md-8">
                 <h2>Tópicos</h2>
@@ -75,6 +96,4 @@
         }
     </script>
 
-    @RenderBody() <!-- Esta linha deve ser incluída aqui -->
-</body>
-</html>
+    
